@@ -5,7 +5,7 @@ import Product from '../tile/Product';
 import useProductFilter from '../../../hooks/useProductFilter';
 import { deepEqual } from '../../../utils/common.utils';
 
-function areEqual(prevProps: any, nextProps: any) {
+function canReRender(prevProps: Props, nextProps: Props) {
   const productsChanged = deepEqual(prevProps.products, nextProps.products);
   const searchChanged = deepEqual(prevProps.searchTerm, nextProps.searchTerm);
   const dressFIltersChanged = deepEqual(prevProps.productTypeFilters, nextProps.productTypeFilters);
@@ -78,6 +78,6 @@ const ProductList: FC<Props> = memo(function ProductList({
     </div>
   );
 },
-areEqual);
+canReRender);
 
 export default ProductList;

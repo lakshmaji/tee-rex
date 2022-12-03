@@ -6,8 +6,8 @@ const CartCounter = () => {
   const [totalItemsCount, setTotalItemsCount] = useState(0);
 
   useEffect(() => {
-    const subscription = cartService.items$.subscribe((data) => {
-      const total = data.reduce((total, item) => total + item.quantity, 0);
+    const subscription = cartService.items$.subscribe((items) => {
+      const total = items.reduce((total, item) => total + item.quantity, 0);
       setTotalItemsCount(total);
     });
     return () => {

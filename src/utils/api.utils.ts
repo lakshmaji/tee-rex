@@ -3,7 +3,7 @@ import { QueryParams } from '../types/utils';
 export interface ApiOptions {
   method: 'GET';
   headers: Record<string, string>;
-  body?: Record<string, any>;
+  body?: Record<string, never>;
   params?: QueryParams;
 }
 

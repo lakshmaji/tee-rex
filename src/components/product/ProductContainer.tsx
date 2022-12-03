@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useState } from 'react';
 import { IProduct } from '../../types/product';
 import ProductFilters from './filter/ProductFilters';
 import ProductList from './list/ProductList';

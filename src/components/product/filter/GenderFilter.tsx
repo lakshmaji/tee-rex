@@ -1,8 +1,10 @@
-import React, { FC, memo, useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 
-const GenderFilter: FC<{ onFilterGender: (gender: Record<string, boolean>) => void }> = ({
-  onFilterGender,
-}) => {
+interface Props {
+  onFilterGender: (gender: Record<string, boolean>) => void;
+}
+
+const GenderFilter: FC<Props> = ({ onFilterGender }) => {
   const [gender, setGender] = useState({
     male: false,
     female: false,

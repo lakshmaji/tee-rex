@@ -2,7 +2,7 @@ import React, { FC, memo, useEffect, useState } from 'react';
 import { ICheckItem } from '../../../types/common';
 import { sanitize } from '../../../utils/common.utils';
 
-function areEqual(prevProps: any, nextProps: any) {
+function canReRender(prevProps: Props, nextProps: Props) {
   return prevProps.masterTypeFilters.length === nextProps.masterTypeFilters.length;
 }
 
@@ -15,7 +15,7 @@ const ProductTypeFilter: FC<Props> = memo(function DressTypeFilter({
   masterTypeFilters,
   onFilterDress,
 }: Props) {
-  const [dressTypes, setChosenColors] = useState<ICheckItem[]>([]);
+  const [productTypes, setChosenColors] = useState<ICheckItem[]>([]);
 
   useEffect(() => {
     setChosenColors(
@@ -38,15 +38,14 @@ const ProductTypeFilter: FC<Props> = memo(function DressTypeFilter({
   };
 
   useEffect(() => {
-    const finallist = dressTypes.filter((e) => e.selected);
-    onFilterDress(finallist.map((e) => e.value));
-  }, [dressTypes, onFilterDress]);
+    onFilterDress(productTypes.filter((e) => e.selected).map((e) => e.value));
+  }, [productTypes, onFilterDress]);
 
   return (
     <div className='box border-bottom'>
       <div className='box-label text-capitalize d-flex align-items-center'>type</div>
       <div id='type' className=' mt-2 mr-1'>
-        {dressTypes.map((d) => {
+        {productTypes.map((d) => {
           return (
             <div className='my-1' key={d.value}>
               <label className='tick'>
@@ -65,6 +64,6 @@ const ProductTypeFilter: FC<Props> = memo(function DressTypeFilter({
     </div>
   );
 },
-areEqual);
+canReRender);
 
 export default ProductTypeFilter;

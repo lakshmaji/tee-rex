@@ -4,13 +4,14 @@ import { classNames } from '../../../utils/common.utils';
 import styles from './alert.module.scss';
 import { alertService } from '../../../services/alert';
 import { IAlert } from '../../../types/common';
+import { ALERT_TIMEOUT } from '../../../constants';
 
 const Alert = () => {
   const [message, setMessage] = useState<IAlert>();
   useEffect(() => {
     const subscription = alertService
       .getMessage()
-      .pipe(filter<any | undefined>((item) => typeof item !== 'undefined'))
+      .pipe(filter<IAlert>((item) => typeof item !== 'undefined'))
       .subscribe((items) => {
         setMessage(items);
       });
@@ -23,9 +24,9 @@ const Alert = () => {
     const subscription = alertService
       .getMessage()
       .pipe(
-        filter<any | undefined>((item) => typeof item !== 'undefined'),
+        filter<IAlert>((item) => typeof item !== 'undefined'),
         distinctUntilChanged(),
-        delay(3000), // in ms
+        delay(ALERT_TIMEOUT),
       )
       .subscribe(() => {
         setMessage({} as IAlert);

@@ -3,8 +3,7 @@ import { deepEqual } from '../../../utils/common.utils';
 
 const proportional = (value: number, maxPrice: number) => (value / 100) * (maxPrice || 500);
 
-function areEqual(prevProps: any, nextProps: any) {
-  // return prevProps.masterTypeFilters.length === nextProps.masterTypeFilters.length;
+function canReRender(prevProps: Props, nextProps: Props) {
   const priceChanged = deepEqual(prevProps.maxPrice, nextProps.maxPrice);
   return priceChanged;
 }
@@ -212,6 +211,6 @@ const PriceFilter: FC<Props> = memo(function PriceFilter({
     </div>
   );
 },
-areEqual);
+canReRender);
 
 export default PriceFilter;

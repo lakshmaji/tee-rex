@@ -2,7 +2,7 @@ import React, { FC, memo, useEffect, useState } from 'react';
 import { ICheckItem } from '../../../types/common';
 import { sanitize } from '../../../utils/common.utils';
 
-function areEqualColor(prevProps: any, nextProps: any) {
+function canReRender(prevProps: Props, nextProps: Props) {
   return prevProps.masterColorFilters.length === nextProps.masterColorFilters.length;
 }
 
@@ -37,8 +37,7 @@ const ColorFilter: FC<Props> = memo(function ColorFIlter({
   };
 
   useEffect(() => {
-    const finallist = chosenColors.filter((e) => e.selected);
-    onFilterColor(finallist.map((e) => e.value));
+    onFilterColor(chosenColors.filter((e) => e.selected).map((e) => e.value));
   }, [chosenColors, onFilterColor]);
 
   return (
@@ -64,6 +63,6 @@ const ColorFilter: FC<Props> = memo(function ColorFIlter({
     </div>
   );
 },
-areEqualColor);
+canReRender);
 
 export default ColorFilter;
