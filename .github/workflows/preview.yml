@@ -1,0 +1,25 @@
+name: Lint, Build and Deploy
+
+on:
+  push:
+    branches:
+      - master
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check_deploy:
+    runs-on: ubuntu-latest
+    name: Lint & build
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - run: yarn install --immutable
+      - run: yarn lint
+      - run: yarn build
+      - run: npm install -g surge
+      - run: surge ./build https://teerex-store.surge.sh --token ${{ secrets.SURGE_TOKEN }}

@@ -1,0 +1,18 @@
+.container {
+  margin-top: 60px;
+  .text_sm {
+    font-size: 0.7rem;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .error {
+    background: #e0144c !important;
+  }
+
+  .success {
+    background: #2dc929 !important;
+    // padding: 5px;
+    // width: 75%;
+  }
+}

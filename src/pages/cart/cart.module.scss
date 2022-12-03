@@ -1,0 +1,7 @@
+.cart {
+  &:before {
+    content: '';
+    display: block;
+    height: 30px;
+  }
+}
