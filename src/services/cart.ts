@@ -1,4 +1,12 @@
-import { CartAction, ICartItem, reducer } from '../state/reducer';
+import {
+  Action,
+  AddItemAction,
+  CartAction,
+  ICartItem,
+  reducer,
+  RemoveItemAction,
+  RemoveLineItemAction,
+} from '../state/reducer';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 import { alertService } from './alert';
@@ -50,10 +58,10 @@ class CartService {
         price: value.price,
         currency: value.currency,
       },
-    };
+    } as Action<AddItemAction>;
     const newState = reducer({ items: this.items }, action);
     this._search.next(newState.items);
-    alertService.sendMessage(`ICartItem ${value.name} added to cart`, 'success');
+    alertService.sendMessage(`Item ${value.name} added to cart`, 'success');
   }
 
   getItem(sku: string) {
@@ -61,7 +69,10 @@ class CartService {
   }
 
   decrQty(sku: string) {
-    const action = { type: CartAction.REMOVE_ITEM, payload: { sku, quantity: 1 } };
+    const action = {
+      type: CartAction.REMOVE_ITEM,
+      payload: { sku, quantity: 1 },
+    } as Action<RemoveItemAction>;
 
     const newState = reducer({ items: this.items }, action);
 
@@ -82,12 +93,15 @@ class CartService {
   }
 
   removeLineItem(sku: string) {
-    const action = { type: CartAction.REMOVE_LINE_ITEM, payload: { sku } };
+    const action = {
+      type: CartAction.REMOVE_LINE_ITEM,
+      payload: { sku },
+    } as Action<RemoveLineItemAction>;
 
     const newState = reducer({ items: this.items }, action);
 
     this._search.next(newState.items);
-    alertService.sendMessage(`ICartItem removed from cart`, 'success');
+    alertService.sendMessage(`Item removed from cart`, 'success');
   }
 }
 export const cartService = CartService.getInstance();

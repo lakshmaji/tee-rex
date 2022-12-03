@@ -1,4 +1,5 @@
 import { Currency } from '../types/common';
+import { IProduct } from '../types/product';
 
 export interface ICartItem {
   sku: string;
@@ -18,12 +19,27 @@ export enum CartAction {
   REMOVE_LINE_ITEM = 'REMOVE_LINE_ITEM',
   CLEAR_CART = 'CLEAR_CART',
 }
-export interface Action {
-  type: CartAction;
-  payload?: any;
+
+export interface AddItemAction extends Omit<IProduct, 'id' | 'gender' | 'imageURL'> {
+  sku: string;
+  image: string;
 }
 
-const addItemReducer = (state: State, action: Action) => {
+export interface RemoveItemAction {
+  sku: string;
+  quantity: number;
+}
+export interface RemoveLineItemAction {
+  sku: string;
+}
+
+type ActionType = RemoveLineItemAction | RemoveItemAction | AddItemAction;
+export interface Action<T extends ActionType> {
+  type: CartAction;
+  payload: T;
+}
+
+const addItemReducer = (state: State, action: Action<AddItemAction>) => {
   const existingItemIndex = state.items.findIndex((item) => item.sku === action.payload.sku);
 
   if (existingItemIndex > -1) {
@@ -37,7 +53,7 @@ const addItemReducer = (state: State, action: Action) => {
   return [...state.items, action.payload];
 };
 
-const removeItemReducer = (state: State, action: Action) => {
+const removeItemReducer = (state: State, action: Action<RemoveItemAction>) => {
   return state.items.reduce<ICartItem[]>((acc, item) => {
     if (item.sku === action.payload.sku) {
       const newQuantity = item.quantity - action.payload.quantity;
@@ -48,18 +64,21 @@ const removeItemReducer = (state: State, action: Action) => {
   }, []);
 };
 
-const removeLineItemReducer = (state: State, action: Action) => {
+const removeLineItemReducer = (state: State, action: Action<RemoveLineItemAction>) => {
   return state.items.filter((item) => item.sku !== action.payload.sku);
 };
 
-export const reducer = (state: State, action: Action) => {
+export const reducer = (state: State, action: Action<ActionType>) => {
   switch (action.type) {
     case CartAction.ADD_ITEM:
-      return { ...state, items: addItemReducer(state, action) };
+      return { ...state, items: addItemReducer(state, action as Action<AddItemAction>) };
     case CartAction.REMOVE_ITEM:
-      return { ...state, items: removeItemReducer(state, action) };
+      return { ...state, items: removeItemReducer(state, action as Action<RemoveItemAction>) };
     case CartAction.REMOVE_LINE_ITEM:
-      return { ...state, items: removeLineItemReducer(state, action) };
+      return {
+        ...state,
+        items: removeLineItemReducer(state, action as Action<RemoveLineItemAction>),
+      };
     case CartAction.CLEAR_CART:
       return { ...state, items: [] };
   }
