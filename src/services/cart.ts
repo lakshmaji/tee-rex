@@ -1,7 +1,7 @@
 import { CartAction, ICartItem, reducer } from '../state/reducer';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-import { messageService } from './alert';
+import { alertService } from './alert';
 
 class CartService {
   private _search = new BehaviorSubject<ICartItem[]>([]);
@@ -36,7 +36,7 @@ class CartService {
     const cartItem = this.getItem(value.sku);
     if (cartItem) {
       if (cartItem.quantity >= value.quantity) {
-        messageService.sendMessage(`You can have ${value.quantity} items of this product`, 'error');
+        alertService.sendMessage(`You can have ${value.quantity} items of this product`, 'error');
         return;
       }
     }
@@ -53,7 +53,7 @@ class CartService {
     };
     const newState = reducer({ items: this.items }, action);
     this._search.next(newState.items);
-    messageService.sendMessage(`ICartItem ${value.name} added to cart`, 'success');
+    alertService.sendMessage(`ICartItem ${value.name} added to cart`, 'success');
   }
 
   getItem(sku: string) {
@@ -87,7 +87,7 @@ class CartService {
     const newState = reducer({ items: this.items }, action);
 
     this._search.next(newState.items);
-    messageService.sendMessage(`ICartItem removed from cart`, 'success');
+    alertService.sendMessage(`ICartItem removed from cart`, 'success');
   }
 }
 export const cartService = CartService.getInstance();

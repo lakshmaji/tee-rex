@@ -9,7 +9,7 @@ interface Props {
   item: ICartItem;
 }
 const CartItem: FC<Props> = ({ item }) => {
-  const { deleteItem: _remove } = useCart()
+  const { deleteItem: _remove } = useCart();
 
   const deleteItem = () => {
     _remove(item.sku);

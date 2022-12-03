@@ -8,7 +8,6 @@ interface Props {
 }
 
 const Product: FC<Props> = ({ product }) => {
-
   return (
     <div className='col-lg-4 col-md-6 pt-md-4 pt-3'>
       <div className='card d-flex flex-column align-items-center rounded-0 shadow border-0'>

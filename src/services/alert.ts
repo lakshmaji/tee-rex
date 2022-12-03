@@ -1,18 +1,17 @@
 import { BehaviorSubject, Observable } from 'rxjs';
 import { IAlert } from '../types/common';
 
-
-class MessageService {
+class AlertService {
   private _subject = new BehaviorSubject<IAlert>({} as IAlert);
 
-  private static instance: MessageService;
+  private static instance: AlertService;
 
-  public static getInstance(): MessageService {
-    if (!MessageService.instance) {
-      MessageService.instance = new MessageService();
+  public static getInstance(): AlertService {
+    if (!AlertService.instance) {
+      AlertService.instance = new AlertService();
     }
 
-    return MessageService.instance;
+    return AlertService.instance;
   }
 
   sendMessage(message: string, type: 'error' | 'success') {
@@ -26,4 +25,4 @@ class MessageService {
   }
 }
 
-export const messageService = MessageService.getInstance();
+export const alertService = AlertService.getInstance();

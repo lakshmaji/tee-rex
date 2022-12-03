@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { delay, distinctUntilChanged, filter } from 'rxjs';
 import { classNames } from '../../../utils/common.utils';
 import styles from './alert.module.scss';
-import { messageService } from '../../../services/alert';
+import { alertService } from '../../../services/alert';
 import { IAlert } from '../../../types/common';
 
 const Alert = () => {
   const [message, setMessage] = useState<IAlert>();
   useEffect(() => {
-    const subscription = messageService
+    const subscription = alertService
       .getMessage()
       .pipe(filter<any | undefined>((item) => typeof item !== 'undefined'))
       .subscribe((items) => {
@@ -20,7 +20,7 @@ const Alert = () => {
   }, []);
 
   useEffect(() => {
-    const subscription = messageService
+    const subscription = alertService
       .getMessage()
       .pipe(
         filter<any | undefined>((item) => typeof item !== 'undefined'),
@@ -36,7 +36,7 @@ const Alert = () => {
   }, []);
 
   const clearNotification = () => {
-    messageService.clearMessages();
+    alertService.clearMessages();
   };
 
   return (

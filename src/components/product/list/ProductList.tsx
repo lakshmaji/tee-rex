@@ -12,7 +12,7 @@ function areEqual(prevProps: any, nextProps: any) {
   const colorFIltersChanged = deepEqual(prevProps.colorFIlters, nextProps.colorFIlters);
   const genderFIltersChanged = deepEqual(prevProps.genderFilters, nextProps.genderFilters);
   const priceFIltersChanged = deepEqual(prevProps.priceRangeFilters, nextProps.priceRangeFilters);
-  
+
   return (
     productsChanged &&
     searchChanged &&
@@ -39,7 +39,6 @@ const ProductList: FC<Props> = memo(function ProductList({
   productTypeFilters = [],
   priceRangeFilters,
 }: Props) {
-
   const { filter } = useProductFilter(products);
   const filteredProducts = filter(
     searchTerm,
