@@ -17,8 +17,3 @@ yarn lint
 1. `bootstrap`. `font-awesome` and `sass`
 2. `react-router-dom`
 3. `rxjs`
-
-## TODO
-
-- [ ] split `index.css` to individual module files
-- [ ] Product tile mobile responsive. that's it.
