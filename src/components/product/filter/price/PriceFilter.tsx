@@ -83,19 +83,6 @@ const PriceFilter: FC<Props> = memo(function PriceFilter({
     onchange();
   }, [maxPrice, onchange]);
 
-  useEffect(() => {
-    if (inputLeft?.current && inputRight?.current) {
-      const leftCurrent = inputLeft.current;
-      leftCurrent.addEventListener('input', setLeftValue);
-      leftCurrent.addEventListener('input', setRightValue);
-
-      return () => {
-        leftCurrent.removeEventListener('input', setLeftValue);
-        leftCurrent.removeEventListener('input', setRightValue);
-      };
-    }
-  }, [setLeftValue, setRightValue]);
-
   const onLeftMouseover = () => {
     thumbLeft.current?.classList.add(styles.hover);
   };
@@ -108,25 +95,6 @@ const PriceFilter: FC<Props> = memo(function PriceFilter({
   const onLeftMouseup = () => {
     thumbLeft.current?.classList.remove(styles.active);
   };
-
-  useEffect(() => {
-    if (inputLeft?.current && inputRight?.current) {
-      const leftCurrent = inputLeft.current;
-      leftCurrent.addEventListener('input', setLeftValue);
-
-      leftCurrent.addEventListener('mouseover', onLeftMouseover);
-      leftCurrent.addEventListener('mouseout', onLeftMouseout);
-      leftCurrent.addEventListener('mousedown', onLeftMousedown);
-      leftCurrent.addEventListener('mouseup', onLeftMouseup);
-
-      return () => {
-        leftCurrent.removeEventListener('mouseover', onLeftMouseover);
-        leftCurrent.removeEventListener('mouseout', onLeftMouseout);
-        leftCurrent.removeEventListener('mousedown', onLeftMousedown);
-        leftCurrent.removeEventListener('mouseup', onLeftMouseup);
-      };
-    }
-  }, [setLeftValue]);
 
   const onRightMouseover = () => {
     thumbRight.current?.classList.add(styles.hover);
@@ -142,34 +110,32 @@ const PriceFilter: FC<Props> = memo(function PriceFilter({
   };
 
   useEffect(() => {
-    if (inputRight?.current && inputRight?.current) {
-      const rightCurrent = inputRight.current;
-      rightCurrent.addEventListener('input', setRightValue);
-
-      rightCurrent.addEventListener('mouseover', onRightMouseover);
-      rightCurrent.addEventListener('mouseout', onRightMouseout);
-      rightCurrent.addEventListener('mousedown', onRightMousedown);
-      rightCurrent.addEventListener('mouseup', onRightMouseup);
-
-      return () => {
-        rightCurrent.removeEventListener('mouseover', onRightMouseover);
-        rightCurrent.removeEventListener('mouseout', onRightMouseout);
-        rightCurrent.removeEventListener('mousedown', onRightMousedown);
-        rightCurrent.removeEventListener('mouseup', onRightMouseup);
-      };
+    if (inputLeft?.current && inputRight?.current) {
+      setLeftValue();
+      setRightValue();
     }
-  }, [setRightValue]);
-
-  useEffect(() => {
-    setLeftValue();
-    setRightValue();
   }, [setLeftValue, setRightValue]);
 
   return (
     <div className={styles.price}>
       <div className={styles.middle}>
         <div className='multi-range-slider'>
-          <input ref={inputLeft} type='range' id='input-left' min={0} max={100} defaultValue={0} />
+          <input
+            ref={inputLeft}
+            type='range'
+            id='input-left'
+            min={0}
+            max={100}
+            defaultValue={0}
+            onInput={setLeftValue}
+            onMouseOver={onLeftMouseover}
+            onMouseOut={onLeftMouseout}
+            onMouseDown={onLeftMousedown}
+            onMouseUp={onLeftMouseup}
+            onFocus={() => void 0}
+            onBlur={() => void 0}
+            className={styles.thumb_input}
+          />
           <input
             ref={inputRight}
             type='range'
@@ -177,6 +143,14 @@ const PriceFilter: FC<Props> = memo(function PriceFilter({
             min={0}
             max={100}
             defaultValue={100}
+            onInput={setRightValue}
+            onMouseOver={onRightMouseover}
+            onMouseOut={onRightMouseout}
+            onMouseDown={onRightMousedown}
+            onMouseUp={onRightMouseup}
+            onFocus={() => void 0}
+            onBlur={() => void 0}
+            className={styles.thumb_input}
           />
           <div className={styles.slider}>
             <div className={styles.track} /> <div ref={range} className={styles.range} />

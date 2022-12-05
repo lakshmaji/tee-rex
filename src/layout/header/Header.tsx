@@ -1,10 +1,12 @@
 import React, { NavLink } from 'react-router-dom';
 import CartCounter from '../../components/common/CartCounter';
 import Logo from '../../components/common/Logo';
+import { classNames } from '../../utils/common.utils';
+import styles from './header.module.scss';
 
 const Header = () => {
   return (
-    <nav className='navbar fixed-top navbar-expand-lg navbar-light bg-light px-4 py-2'>
+    <nav className='navbar fixed-top navbar-expand-lg navbar-light bg-light px-4 py-2 '>
       <div
         className='d-lg-none d-xl-none
 
@@ -18,14 +20,16 @@ const Header = () => {
         <Logo />
         <CartCounter />
       </div>
-      <div className='collapse navbar-collapse' id='navbarTogglerDemo01'>
+      <div className='collapse navbar-collapse justify-content-between' id='navbarTogglerDemo01'>
         <Logo />
-        <ul className='navbar-nav mr-auto mt-2 mt-lg-0'></ul>
-        <ul className='my-2 my-lg-0'>
+        <ul className={'my-2 my-lg-0'}>
           <NavLink
             to='/'
             className={({ isActive }) =>
-              `btn mr-3 ${isActive ? 'btn-dark ' : 'btn-light btn-outline-dark'}`
+              classNames(
+                `btn ${isActive ? 'btn-dark ' : 'btn-light btn-outline-dark'}`,
+                styles.product_link,
+              )
             }
           >
             Products

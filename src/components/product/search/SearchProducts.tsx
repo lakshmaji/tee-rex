@@ -26,7 +26,7 @@ const SearchProducts: FC<Props> = ({ onChange }) => {
   return (
     <div className={classNames('input-group', styles.search_products_container)}>
       <input
-        type='search'
+        type='input'
         placeholder="What're you searching for?"
         aria-describedby='button-search'
         className={classNames('form-control', styles.search_input)}

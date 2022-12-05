@@ -6,6 +6,40 @@
     width: 100%;
     margin-top: 25px;
 
+    .thumb_input {
+      -webkit-appearance: none;
+      position: absolute;
+      pointer-events: none;
+      height: 10px;
+      width: 100%;
+      opacity: 0;
+      z-index: 2;
+      // webkit browsers (chrome, safari, opera)
+      &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        pointer-events: all;
+        width: 30px;
+        height: 30px;
+        border-radius: 0;
+        border: 0 none;
+        background-color: red;
+      }
+
+      // Firefox
+      &::-moz-range-thumb {
+        background-color: #f1f5f7;
+        height: 18px;
+        width: 18px;
+        border: none;
+        border-radius: 50%;
+        box-shadow: 0 0 1px 1px #ced4da;
+        cursor: pointer;
+        margin-top: 4px;
+        pointer-events: all;
+        position: relative;
+      }
+    }
+
     .slider {
       position: relative;
       z-index: 1;
@@ -80,25 +114,6 @@
   .price_range_values {
     font-size: 0.8rem;
   }
-}
-
-input[type='range'] {
-  position: absolute;
-  pointer-events: none;
-  -webkit-appearance: none;
-  z-index: 2;
-  height: 10px;
-  width: 100%;
-  opacity: 0;
-}
-input[type='range']::-webkit-slider-thumb {
-  pointer-events: all;
-  width: 30px;
-  height: 30px;
-  border-radius: 0;
-  border: 0 none;
-  background-color: red;
-  -webkit-appearance: none;
 }
 
 @media (max-width: 1199.5px) {
