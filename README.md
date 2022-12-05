@@ -17,3 +17,8 @@ yarn lint
 1. `bootstrap`. `font-awesome` and `sass`
 2. `react-router-dom`
 3. `rxjs`
+
+## Score
+
+There is scope to improve performance.
+![report](./.github/report.png)
