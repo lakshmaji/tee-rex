@@ -1,6 +1,7 @@
 import React, { FC, useState } from 'react';
 import { MIN_TERM_LENGTH } from '../../../constants';
-import './search-products.scss';
+import { classNames } from '../../../utils/common.utils';
+import styles from './search-products.module.scss';
 
 interface Props {
   onChange: (value: string) => void;
@@ -23,20 +24,25 @@ const SearchProducts: FC<Props> = ({ onChange }) => {
     }
   };
   return (
-    <div className='input-group search_products_container'>
+    <div className={classNames('input-group', styles.search_products_container)}>
       <input
         type='search'
         placeholder="What're you searching for?"
-        aria-describedby='button-addon5'
-        className='form-control '
+        aria-describedby='button-search'
+        className={classNames('form-control', styles.search_input)}
         onChange={_onChange}
         value={val}
         maxLength={20}
       />
       <div className='input-group-append'>
-        <button id='button-addon5' type='submit' className='btn btn-dark' onClick={reset}>
-          {!showReset && <i className='fa fa-search' />}
-          {showReset && <i className='fa fa-times' aria-hidden='true'></i>}
+        <button
+          id='button-search'
+          type='submit'
+          className={classNames('btn btn-dark ', styles.rounded_right)}
+          onClick={reset}
+        >
+          {!showReset && <i className='fa fa-search' aria-hidden='true' />}
+          {showReset && <i className='fa fa-times' aria-hidden='true' />}
         </button>
       </div>
     </div>

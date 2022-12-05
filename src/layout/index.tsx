@@ -10,7 +10,7 @@ const Layout = () => {
       <ScrollRestoration />
 
       <Header />
-      <div style={{ paddingTop: 60 }}>
+      <div className='bg-white' style={{ paddingTop: 60 }}>
         <Alert />
         <Outlet />
       </div>

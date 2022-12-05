@@ -1,0 +1,39 @@
+.card {
+  padding: 10px;
+  cursor: pointer;
+  transition: 0.3s all ease-in-out;
+
+  &:hover {
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
+  }
+
+  .product_stock {
+    font-weight: 600;
+    padding-bottom: 5px;
+  }
+
+  .product_color {
+    font-size: 0.82rem;
+  }
+
+  .product_image {
+    padding-top: 10px;
+    width: inherit;
+    height: 260px;
+    object-fit: contain;
+    display: block;
+  }
+
+  &:hover {
+    box-shadow: 2px 2px 15px #fd9a6ce5;
+    transform: scale(1.02);
+  }
+}
+
+@media (max-width: 1199.5px) {
+  .card {
+    .product_stock {
+      font-size: 0.8rem;
+    }
+  }
+}

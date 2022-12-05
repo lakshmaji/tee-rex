@@ -1,0 +1,26 @@
+.search_products_container {
+  max-width: 550px;
+  .search_input {
+    &:focus {
+      box-shadow: none;
+      border-color: #212529;
+    }
+
+    &::placeholder {
+      font-size: 0.95rem;
+      color: #aaa;
+      font-style: italic;
+    }
+  }
+
+  .rounded_right {
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+  }
+}
+
+@media (max-width: 767.5px) {
+  .search_products_container {
+    max-width: 350px;
+  }
+}

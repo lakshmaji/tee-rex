@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const Logo = () => {
   return (
     <Link className='navbar-brand' to='/'>
-      TeeRex Store
+      🦖 T-Rex
     </Link>
   );
 };

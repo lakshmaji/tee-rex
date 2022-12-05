@@ -1,8 +1,9 @@
 import React, { FC } from 'react';
-import ColorFilter from './ColorFilter';
 import GenderFilter from './GenderFilter';
-import PriceFilter from './PriceFilter';
-import ProductTypeFilter from './ProductTypeFilter';
+import PriceFilter from './price/PriceFilter';
+import styles from './product-filter.module.scss';
+import { classNames } from '../../../utils/common.utils';
+import MultipleFilters from './multiple-selection/MultipleFilters';
 
 interface Props {
   collapse: boolean;
@@ -26,11 +27,35 @@ const ProductFilters: FC<Props> = ({
   onChangePrice,
 }) => {
   return (
-    <div id='filterbar' className={` mt-5 ${collapse ? 'collapse' : ''}`}>
-      <ColorFilter masterColorFilters={masterColorFilters} onFilterColor={onFilterColor} />
-      <ProductTypeFilter masterTypeFilters={masterTypeFilters} onFilterDress={onFilterDress} />
-      <PriceFilter maxPrice={maxPriceFilter} onChangePrice={onChangePrice} />
-      <GenderFilter onFilterGender={onFilterGender} />
+    <div
+      id='filterbar'
+      className={classNames(` mt-5 ${collapse ? 'collapse' : ''}`, styles.container)}
+    >
+      <div className={classNames('border-bottom', styles.box)}>
+        <div className={classNames(styles.box_label, ' text-capitalize d-flex align-items-center')}>
+          color
+        </div>
+        <MultipleFilters items={masterColorFilters} onChange={onFilterColor} />
+      </div>
+      <div className={classNames('border-bottom', styles.box)}>
+        <div className={classNames(styles.box_label, ' text-capitalize d-flex align-items-center')}>
+          type
+        </div>
+        <MultipleFilters items={masterTypeFilters} onChange={onFilterDress} />
+      </div>
+      <div className={classNames('border-bottom', styles.box)}>
+        <div className={classNames(styles.box_label, ' text-capitalize d-flex align-items-center')}>
+          price
+        </div>
+
+        <PriceFilter maxPrice={maxPriceFilter} onChangePrice={onChangePrice} />
+      </div>
+      <div className={classNames(styles.box)}>
+        <div className={classNames(styles.box_label, ' text-capitalize d-flex align-items-center')}>
+          gender
+        </div>
+        <GenderFilter onFilterGender={onFilterGender} />
+      </div>
     </div>
   );
 };

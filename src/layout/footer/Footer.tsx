@@ -23,7 +23,7 @@ const LINKS: IFooterLink[] = [
 
 const Footer = () => {
   return (
-    <footer className='py-3 my-4 bg-dark'>
+    <footer className='py-3 py-4 bg-dark'>
       <ul className='nav justify-content-center border-bottom pb-3 mb-3'>
         {LINKS.map((item) => {
           return (
@@ -39,7 +39,7 @@ const Footer = () => {
           );
         })}
       </ul>
-      <p className='text-center text-muted'>© 2022 Company, Inc</p>
+      <p className='text-center text-muted'>© 2022 T-Rex</p>
     </footer>
   );
 };

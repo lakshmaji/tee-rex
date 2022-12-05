@@ -1,7 +1,7 @@
 import React from 'react';
 
 const NoProducts = () => {
-  return <div style={{ minHeight: '100vh' }}></div>;
+  return <div></div>;
 };
 
 export default NoProducts;

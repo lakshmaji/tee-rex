@@ -1,5 +1,6 @@
 import React, { FC, memo, useCallback, useEffect, useRef, useState } from 'react';
-import { deepEqual } from '../../../utils/common.utils';
+import { classNames, deepEqual } from '../../../../utils/common.utils';
+import styles from './price.module.scss';
 
 const proportional = (value: number, maxPrice: number) => (value / 100) * (maxPrice || 500);
 
@@ -54,7 +55,6 @@ const PriceFilter: FC<Props> = memo(function PriceFilter({
       amountLeft.current.innerText = parseInt(`${proportional(percent, maxPrice)}`).toString();
     }
 
-    // setMinValue(proportional(percent, maxPrice));
     minValue.current = proportional(percent, maxPrice);
     onchange();
   }, [maxPrice, onchange]);
@@ -69,7 +69,6 @@ const PriceFilter: FC<Props> = memo(function PriceFilter({
     );
 
     const percent = ((maxCap - min) / (max - min)) * 100;
-    // ((100 - 0) / (100 - 0)) * 100 = 100
 
     if (thumbRight.current) {
       thumbRight.current.style.right = 100 - percent + '%';
@@ -80,7 +79,6 @@ const PriceFilter: FC<Props> = memo(function PriceFilter({
     if (amountRight.current) {
       amountRight.current.innerText = parseInt(`${proportional(percent, maxPrice)}`).toString();
     }
-    // setMaxValue(proportional(percent, maxPrice));
     maxValue.current = proportional(percent, maxPrice);
     onchange();
   }, [maxPrice, onchange]);
@@ -99,16 +97,16 @@ const PriceFilter: FC<Props> = memo(function PriceFilter({
   }, [setLeftValue, setRightValue]);
 
   const onLeftMouseover = () => {
-    thumbLeft.current?.classList.add('hover');
+    thumbLeft.current?.classList.add(styles.hover);
   };
   const onLeftMouseout = () => {
-    thumbLeft.current?.classList.remove('hover');
+    thumbLeft.current?.classList.remove(styles.hover);
   };
   const onLeftMousedown = () => {
-    thumbLeft.current?.classList.add('active');
+    thumbLeft.current?.classList.add(styles.active);
   };
   const onLeftMouseup = () => {
-    thumbLeft.current?.classList.remove('active');
+    thumbLeft.current?.classList.remove(styles.active);
   };
 
   useEffect(() => {
@@ -131,16 +129,16 @@ const PriceFilter: FC<Props> = memo(function PriceFilter({
   }, [setLeftValue]);
 
   const onRightMouseover = () => {
-    thumbRight.current?.classList.add('hover');
+    thumbRight.current?.classList.add(styles.hover);
   };
   const onRightMouseout = () => {
-    thumbRight.current?.classList.remove('hover');
+    thumbRight.current?.classList.remove(styles.hover);
   };
   const onRightMousedown = () => {
-    thumbRight.current?.classList.add('active');
+    thumbRight.current?.classList.add(styles.active);
   };
   const onRightMouseup = () => {
-    thumbRight.current?.classList.remove('active');
+    thumbRight.current?.classList.remove(styles.active);
   };
 
   useEffect(() => {
@@ -168,44 +166,38 @@ const PriceFilter: FC<Props> = memo(function PriceFilter({
   }, [setLeftValue, setRightValue]);
 
   return (
-    <div className='box border-bottom'>
-      <div className='box-label text-capitalize d-flex align-items-center'>price</div>
-      <div className='' id='price'>
-        <div className='middle'>
-          <div className='multi-range-slider'>
-            <input
-              ref={inputLeft}
-              type='range'
-              id='input-left'
-              min={0}
-              max={100}
-              defaultValue={0}
-            />
-            <input
-              ref={inputRight}
-              type='range'
-              id='input-right'
-              min={0}
-              max={100}
-              defaultValue={100}
-            />
-            <div className='slider'>
-              <div className='track' /> <div ref={range} className='range' />
-              <div ref={thumbLeft} className='thumb left' />{' '}
-              <div ref={thumbRight} className='thumb right' />
-            </div>
+    <div className={styles.price}>
+      <div className={styles.middle}>
+        <div className='multi-range-slider'>
+          <input ref={inputLeft} type='range' id='input-left' min={0} max={100} defaultValue={0} />
+          <input
+            ref={inputRight}
+            type='range'
+            id='input-right'
+            min={0}
+            max={100}
+            defaultValue={100}
+          />
+          <div className={styles.slider}>
+            <div className={styles.track} /> <div ref={range} className={styles.range} />
+            <div ref={thumbLeft} className={classNames(styles.thumb, styles.left)} />{' '}
+            <div ref={thumbRight} className={classNames(styles.thumb, styles.right)} />
           </div>
         </div>
-        <div className='d-flex align-items-center justify-content-between mt-2 price-range-values'>
-          <div>
-            <i className='fa fa-inr' aria-hidden='true'></i>
-            <span id='amount-left' ref={amountLeft} className='font-weight-bold' />
-            {/* TODO: this has to be from global currency config */}
-          </div>
-          <div>
-            <i className='fa fa-inr' aria-hidden='true'></i>
-            <span id='amount-right' ref={amountRight} className='font-weight-bold' />
-          </div>
+      </div>
+      <div
+        className={classNames(
+          'd-flex align-items-center justify-content-between mt-2 ',
+          styles.price_range_values,
+        )}
+      >
+        <div>
+          <i className='fa fa-inr' aria-hidden='true'></i>
+          <span ref={amountLeft} className='font-weight-bold' />
+        </div>
+        <div>
+          <i className='fa fa-inr' aria-hidden='true'></i>
+          <span ref={amountRight} className='font-weight-bold' />
         </div>
       </div>
     </div>
