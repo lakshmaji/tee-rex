@@ -2,6 +2,13 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Scores
+
+![geektrust](./.github/teerex.jpeg)
+
+![report](./.github/report.png)
+There is scope to improve performance.
+
 ## Development
 
 In the project directory, you can run:
@@ -17,8 +24,3 @@ yarn lint
 1. `bootstrap`. `font-awesome` and `sass`
 2. `react-router-dom`
 3. `rxjs`
-
-## Score
-
-There is scope to improve performance.
-![report](./.github/report.png)
