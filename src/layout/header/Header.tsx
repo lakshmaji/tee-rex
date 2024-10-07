@@ -12,15 +12,15 @@ const Header = () => {
 
         border-0 d-flex p-0 m-0 w-100 justify-content-between align-items-center pt-1'
         data-toggle='collapse'
-        data-target='#navbarTogglerDemo01'
-        aria-controls='navbarTogglerDemo01'
+        data-target='#navbarToggler'
+        aria-controls='navbarToggler'
         aria-expanded='false'
         aria-label='Toggle navigation'
       >
         <Logo />
         <CartCounter />
       </div>
-      <div className='collapse navbar-collapse justify-content-between' id='navbarTogglerDemo01'>
+      <div className='collapse navbar-collapse justify-content-between' id='navbarToggler'>
         <Logo />
         <ul className={'my-2 my-lg-0'}>
           <NavLink

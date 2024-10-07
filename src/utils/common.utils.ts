@@ -5,6 +5,7 @@ export function classNames(...classes: string[]): string {
 export const sanitize = (value: string): string => value.toLowerCase().replace(/\s\s+/g, ' ');
 
 type Base = any;
+
 export function deepEqual(obj1: Base, obj2: Base): boolean {
   if (obj1 === obj2) return true;
 
