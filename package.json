@@ -18,13 +18,13 @@
     "email": "lakshmaji@users.noreply.github.com"
   },
   "devDependencies": {
-    "@testing-library/dom": "^10.4.0",
+    "@testing-library/dom": "10.4.0",
     "@testing-library/jest-dom": "5.16.5",
-    "@testing-library/react": "^16.0.1",
+    "@testing-library/react": "16.0.1",
     "@testing-library/user-event": "13.5.0",
     "@types/jest": "27.5.2",
     "@types/node": "16.18.4",
-    "@types/react": "^18.3.11",
+    "@types/react": "18.3.11",
     "@types/react-dom": "^18.3.0",
     "eslint": "8.28.0",
     "eslint-config-prettier": "8.5.0",

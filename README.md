@@ -2,7 +2,7 @@
 
 [![Build Status](https://github.com/lakshmaji/tee-rex/actions/workflows/preview.yml/badge.svg)](https://github.com/lakshmaji/tee-rex/actions/workflows/preview.yml)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Live Demo: [here](https://teerex-store.surge.sh/)
 
 ## Scores
 
@@ -19,6 +19,7 @@ In the project directory, you can run:
 yarn start
 yarn build
 yarn lint
+yarn test
 ```
 
 ## External Dependencies
