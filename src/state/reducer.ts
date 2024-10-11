@@ -45,7 +45,7 @@ const addItemReducer = (state: State, action: Action<AddItemAction>) => {
 
   if (existingItem) {
     return state.items.map((item) =>
-      item.sku === sku ? { ...item, quantity: item.quantity + quantity } : item
+      item.sku === sku ? { ...item, quantity: item.quantity + quantity } : item,
     );
   }
 

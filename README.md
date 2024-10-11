@@ -1,5 +1,7 @@
 # TeeRex 🦖
 
+[![Build Status](https://github.com/lakshmaji/tee-rex/actions/workflows/preview.yml/badge.svg)](https://github.com/lakshmaji/tee-rex/actions/workflows/preview.yml)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Scores

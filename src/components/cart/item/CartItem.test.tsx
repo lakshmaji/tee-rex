@@ -2,7 +2,6 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { useCart } from '../../../hooks/useCart';
 import CartItem from './CartItem';
-import Currency from '../../common/Currency';
 import { ICartItem } from '../../../state/reducer';
 
 jest.mock('../../../hooks/useCart');

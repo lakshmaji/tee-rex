@@ -31,20 +31,26 @@ describe('CartService', () => {
   describe('addItem', () => {
     it('should add an item to the cart and send a success message', () => {
       cartService.addItem(mockItem);
-      
+
       const items = cartService.items;
       expect(items).toEqual([mockItem]);
-      expect(alertService.sendMessage).toHaveBeenCalledWith('Item Test Product added to cart', 'success');
+      expect(alertService.sendMessage).toHaveBeenCalledWith(
+        'Item Test Product added to cart',
+        'success',
+      );
     });
 
     it('should not add more items than available and send an error message', () => {
       const cartItem = { ...mockItem, quantity: 2 };
       cartService.items = [cartItem];
-      
+
       cartService.addItem({ ...mockItem, quantity: 2 });
 
       expect(cartService.items).toEqual([cartItem]);
-      expect(alertService.sendMessage).toHaveBeenCalledWith('You can have 2 items of this product', 'error');
+      expect(alertService.sendMessage).toHaveBeenCalledWith(
+        'You can have 2 items of this product',
+        'error',
+      );
     });
   });
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent, waitFor, act } from '@testing-library/react';
+import { render, screen, fireEvent, act } from '@testing-library/react';
 import { alertService } from '../../../services/alert';
 import { IAlert } from '../../../types/common';
 import Alert from './Alert';

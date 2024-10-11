@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, act } from '@testing-library/react';
-import { BehaviorSubject, Subscription } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { MemoryRouter } from 'react-router-dom';
 import Cart from './Cart';
 import { cartService } from '../../services/cart';
