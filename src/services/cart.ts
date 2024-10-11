@@ -11,7 +11,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 import { alertService } from './alert';
 
-class CartService {
+export class CartService {
   private _search = new BehaviorSubject<ICartItem[]>([]);
 
   private static instance: CartService;

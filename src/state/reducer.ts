@@ -40,16 +40,15 @@ export interface Action<T extends ActionType> {
 }
 
 const addItemReducer = (state: State, action: Action<AddItemAction>) => {
-  const existingItemIndex = state.items.findIndex((item) => item.sku === action.payload.sku);
+  const { sku, quantity } = action.payload;
+  const existingItem = state.items.find((item) => item.sku === sku);
 
-  if (existingItemIndex > -1) {
-    return state.items.map((item) => {
-      if (item.sku === action.payload.sku) {
-        return { ...item, quantity: item.quantity + action.payload.quantity };
-      }
-      return item;
-    });
+  if (existingItem) {
+    return state.items.map((item) =>
+      item.sku === sku ? { ...item, quantity: item.quantity + quantity } : item
+    );
   }
+
   return [...state.items, action.payload];
 };
 

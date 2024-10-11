@@ -3,7 +3,8 @@ import { render, screen, waitFor } from '@testing-library/react';
 import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 import ROUTES from './routes';
 
-describe.skip('ROUTES configuration', () => {
+// This isn't really required
+describe('ROUTES configuration', () => {
   beforeEach(() => {
     window.scrollTo = jest.fn();
   });
@@ -11,7 +12,7 @@ describe.skip('ROUTES configuration', () => {
     jest.clearAllMocks();
   });
 
-  test('renders the Products component on root route', async () => {
+  it('renders the Products component on root route', async () => {
     const router = createMemoryRouter(ROUTES, {
       initialEntries: ['/'],
     });
@@ -22,7 +23,7 @@ describe.skip('ROUTES configuration', () => {
     });
   });
 
-  test('renders the Cart component on /cart route', async () => {
+  it('renders the Cart component on /cart route', async () => {
     const router = createMemoryRouter(ROUTES, {
       initialEntries: ['/cart'],
     });

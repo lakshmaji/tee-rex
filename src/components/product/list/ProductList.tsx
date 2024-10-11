@@ -90,7 +90,10 @@ const ProductList: FC<Props> = memo(function ProductList({
     <>
       {filteredProducts.length != products.length && (
         <div className={classNames('d-flex justify-content-center', styles.note_wrapper)}>
-          <span className={classNames('badge rounded-0 bg-light text-dark', styles.note)}>
+          <span
+            className={classNames('badge rounded-0 bg-light text-dark', styles.note)}
+            data-testid='products-count-text'
+          >
             {filteredProducts.length} of {products.length}
           </span>
         </div>

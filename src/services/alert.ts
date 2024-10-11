@@ -1,7 +1,7 @@
 import { BehaviorSubject, Observable } from 'rxjs';
 import { IAlert } from '../types/common';
 
-class AlertService {
+export class AlertService {
   private _subject = new BehaviorSubject<IAlert>({} as IAlert);
 
   private static instance: AlertService;
